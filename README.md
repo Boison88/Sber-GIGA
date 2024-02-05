@@ -1,2 +1,1 @@
-# Sber-GIGA
-A test task for Sber.
+# A test task for Sber.
