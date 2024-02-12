@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, Body, Query
+from fastapi import FastAPI, Depends, Body, Query, HTTPException
 from typing import Annotated
 from sqlalchemy.orm import Session
 from datetime import datetime
@@ -34,7 +34,7 @@ def return_domains(
     result = {"domains": []}
     for i in links:
         if from_time > to_time:
-            return result, {"status": "date error"}
+            raise HTTPException(status_code=400, detail="date error")
         if from_time <= i.time <= to_time:
             url = urlparse(i.domains).netloc
             if url in result["domains"]:
